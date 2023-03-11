@@ -51,15 +51,11 @@ body{
 .to-do-List{
     width: 500px;
     margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .list{
-    height: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    height: auto;
     width: 100%;
     border-radius: 2px;
     padding: 16px;
