@@ -9,20 +9,17 @@
     <title>To-do List</title>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="nav">
-                <div class="logo">
-                    <i class="fa-solid fa-clipboard-check"></i>    
-                    <h1>To-do List</h1>
-                </div>
-                <div class="input-submit">
-                    <input id="input-text" type="text"><button onclick="makeDiv()">Submit</button>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="to-do-List"></div>
+    <div class="container">
+        <a href="#" class="logo">
+            <h1>To-Do List</h1><span><img src="images/icon.png" alt=""></span>
+        </a>
+        <form class="form">
+            <input type="text" id="input-text" placeholder="Add Your Task"><button onclick="addItem(event)">Add</button>
+        </form>
+        <ul class="list">
+    
+        </ul>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

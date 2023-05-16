@@ -1,32 +1,35 @@
-const inputText = document.getElementById("input-text");
-const toDoList = document.querySelector(".to-do-List");
+const inputText = document.querySelector("#input-text");
+const listContainer = document.querySelector(".list")
 
-inputText.addEventListener("keydown" , function(event){
-    if(event.key === "Enter"){
-        makeDiv()
+function addItem(event){
+    event.preventDefault()
+    if(inputText.value === ""){
+        alert('Please enter information')
+    }else{
+        const li = document.createElement('li');
+        li.innerHTML = inputText.value;
+        const span = document.createElement('span');
+        span.innerHTML = "\u00d7";
+        li.appendChild(span)
+        listContainer.appendChild(li);
+        saveData()
     }
-})
-
-function makeDiv(){
-    let liste = document.createElement('div');
-    liste.className = 'list';
-    liste.innerHTML = "<div>"+inputText.value+"</div>";
-    let shocialIcons = document.createElement("div");
-    let  iconsChek = document.createElement('i'); 
-    iconsChek.style.color = "lightgray"
-    iconsChek.addEventListener('click' , function(){
-        iconsChek.style.color = "limegreen"
-    })
-    let iconstrash = document.createElement('i');
-
-    iconstrash.addEventListener('click' , function(){
-        liste.remove() 
-    })
-    iconstrash.className = "fa-solid fa-trash" ;
-    iconsChek.className = "fa-solid fa-square-check" ;
-    shocialIcons.appendChild(iconsChek);
-    shocialIcons.appendChild(iconstrash);
-    liste.appendChild(shocialIcons)
-    toDoList.appendChild(liste) ;
-    inputText.value = "";
 }
+listContainer.addEventListener("click" , function(event) {
+    if(event.target.tagName === "LI"){
+        event.target.classList.toggle("cheked");
+        saveData()
+    }
+    else if(event.target.tagName === "SPAN"){
+        event.target.parentElement.remove() ;
+        saveData()
+    }
+} , false)
+
+function saveData(){
+    localStorage.setItem("data" , listContainer.innerHTML)
+}
+function showData(){
+    listContainer.innerHTML = localStorage.getItem("data")
+}
+showData()
