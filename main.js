@@ -12,6 +12,7 @@ function addItem(event){
         span.innerHTML = "\u00d7";
         li.appendChild(span)
         listContainer.appendChild(li);
+        inputText.value = ""
         saveData()
     }
 }
