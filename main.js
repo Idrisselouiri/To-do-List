@@ -1,36 +1,37 @@
-const inputText = document.querySelector("#input-text");
-const listContainer = document.querySelector(".list")
-
-function addItem(event){
-    event.preventDefault()
-    if(inputText.value === ""){
-        alert('Please enter information')
+const input = document.querySelector('#input-text');
+const listContainer = document.querySelector('.list');
+const btn = document.querySelector("#btn");
+console.log(listContainer , btn , input)
+// btn 
+btn.addEventListener('click' , () =>{
+    if(input.value === ""){
+        alert("Please Enter your Information")
     }else{
-        const li = document.createElement('li');
-        li.innerHTML = inputText.value;
-        const span = document.createElement('span');
-        span.innerHTML = "\u00d7";
-        li.appendChild(span)
-        listContainer.appendChild(li);
-        inputText.value = ""
+        let div = document.createElement('div');
+        let text = document.createElement('p');
+        let btnClose = document.createElement('i');
+        text.innerHTML = input.value ; 
+        btnClose.classList = "fa-solid fa-circle-xmark" ;
+        div.appendChild(text) ; 
+        div.appendChild(btnClose) ;
+        div.classList = "items-list" ;
+        listContainer.appendChild(div);
         saveData()
     }
-}
-listContainer.addEventListener("click" , function(event) {
-    if(event.target.tagName === "LI"){
+})
+
+listContainer.addEventListener("click" , (event) =>{
+    if(event.target.tagName === "P"){
         event.target.classList.toggle("cheked");
         saveData()
-    }
-    else if(event.target.tagName === "SPAN"){
+    }else if(event.target.tagName === "I"){
         event.target.parentElement.remove() ;
         saveData()
+      
     }
-} , false)
-
+})
 function saveData(){
-    localStorage.setItem("data" , listContainer.innerHTML)
+    localStorage.setItem('list' , listContainer.innerHTML)
 }
-function showData(){
-    listContainer.innerHTML = localStorage.getItem("data")
-}
-showData()
+listContainer.innerHTML = localStorage.getItem('list')
+
